@@ -7,15 +7,15 @@ app.get('/', (req, res) => {
 
 })
 
-app.get('/', (req, res) => {
+app.post('/', (req, res) => {
   
 })
 
-app.get('/', (req, res) => {
+app.put('/', (req, res) => {
   
 })
 
-app.get('/', (req, res) => {
+app.delete('/', (req, res) => {
   
 })
 
