@@ -18,7 +18,7 @@ const App = () => {
   }, [])
 
   const handleInput = (event) => {
-    if(event.target.className === 'note-header-input'){
+    if(event.target.classList.contains('note-header-input')){
       setNewNoteHeader(event.target.value);
     }else{
       setNewNoteContent(event.target.value);
