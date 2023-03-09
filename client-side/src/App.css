@@ -1,25 +1,58 @@
+/* CLEARNING */
 *{
   margin: 0;
   padding: 0;
   font-family: 'Verdana';
 }
 
+/* ---------------------------------------------------------------------------- */
+/* MAIN TAGS */
 body{
-  margin: 0 auto;
   background-color: rgb(196, 195, 195);
-}
-
-.my-form{
-  width: 500px;
-}
-
-.text-area{
-  margin-bottom: 0px;
 }
 
 textarea{
   height: 100px;
 }
+
+th, td{
+  text-align: center;
+}
+
+
+/* ---------------------------------------------------------------------------- */
+/* CLASSES SELECTORS */
+/* ---------------------------------------------------------------------------- */
+
+/* Form Selectors */
+.cont{
+  max-width: 500px;
+}
+
+.my-form{
+  max-width: 500px;
+  margin: auto;
+}
+
+/* ---------------------------------------------------------------------------- */
+/* Content Selectors */
+.header{
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.table{
+  background-color: white;
+  max-width: 700px;
+}
+
+
+
+
+
+
+
+
 
 .text{
   color: rgb(7, 86, 170);
@@ -43,9 +76,7 @@ textarea{
   margin-top: 0px;
 }
 
-.header{
-  margin-bottom: 15px;
-}
+
 
 .save-button:hover{
   background-color: rgb(8, 85, 167);

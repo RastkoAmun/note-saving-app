@@ -1,22 +1,55 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const { Pool } = require('pg')
 const PORT = 8080
 
-app.get('/', (req, res) => {
-
+const pool = new Pool({
+  connectionString: "postgres://postgres:elephant@localhost:cmpt-372"
 })
 
-app.post('/', (req, res) => {
-  
+//Middlewares
+app.use(express.json())
+app.use(cors());
+
+app.get('/notes', (req, res) => {
+  try {
+    
+  }catch(err) {
+    console.log(err.message)
+  }
 })
 
-app.put('/', (req, res) => {
-  
+app.get('/notes:id', (req, res) => {
+  try {
+    
+  }catch(err) {
+    console.log(err.message)
+  }
 })
 
-app.delete('/', (req, res) => {
-  
+app.post('/notes', (req, res) => {
+  try {
+    
+  }catch(err) {
+    console.log(err.message)
+  }
+})
+
+app.put('/notes/:id', (req, res) => {
+  try {
+    
+  }catch(err) {
+    console.log(err.message)
+  }
+})
+
+app.delete('/notes/:id', (req, res) => {
+  try {
+    
+  }catch(err) {
+    console.log(err.message)
+  }
 })
 
 

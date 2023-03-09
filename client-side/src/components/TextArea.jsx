@@ -11,8 +11,7 @@ const TextArea = (props) => {
     //     <button className="save-button" onClick={props.addNoteFunction}>SAVE NOTE</button>
     //   </form>
     // </div>
-    <div className="my-form container">
-      <div className="mt-5">
+    <div className="my-form mt-5">
         <div className="mb-3 text-center">
           <label htmlFor="exampleFormControlInput1" className="form-label h3 fw-bold">Note header</label>
           <input type="text" className="form-control note-header-input" id="exampleFormControlInput1" placeholder="" value={props.headerValue} 
@@ -24,7 +23,6 @@ const TextArea = (props) => {
             onChange={props.handleInput}></textarea>
         </div>
         <button className="btn btn-success form-control" onClick={props.addNoteFunction}>SAVE NOTE</button>
-      </div>
     </div>
     
   )
