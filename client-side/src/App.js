@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div className='container'>
       <TextArea getNotes={getNotes}/>
-      <NotesList notes={notes} />
+      <NotesList notes={notes} getNotes={getNotes}/>
     </div>
   );
 }
