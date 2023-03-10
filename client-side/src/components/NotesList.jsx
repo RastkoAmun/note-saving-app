@@ -1,4 +1,5 @@
 import Modal from './Modal'
+import DeleteModal from './DeleteModal';
 import { useState } from 'react'
 
 const NotesList = ({notes}) => {
@@ -24,9 +25,9 @@ const NotesList = ({notes}) => {
         <h2 className='header'>SAVED NOTES:</h2>
         <ul>
           {notes.map(note => {
-            return <li key={counter++}><span className='text' onClick={func}>{note.header}</span></li>
+            return <li key={note.id}><span className='text' onClick={func}>{note.title}</span></li>
           })}
-          <Modal open={openModal} note={foundNote} onClose={() => setOpenModal(false)}/>
+          {/* <Modal open={openModal} note={foundNote} onClose={() => setOpenModal(false)}/> */}
         </ul>
       </div>
       <div>
@@ -40,12 +41,16 @@ const NotesList = ({notes}) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td scope="row">Groceries Note</td>
-              <td><button className="btn btn-secondary">View</button></td>
-              <td><button className="btn btn-warning">Edit</button></td>
-              <td><button className="btn btn-danger">Delete</button></td>
-            </tr>
+            {notes.map(note => {
+              return(
+                <tr key={note.id}>
+                  <td scope="row">{note.title}</td>
+                  <td><button className="btn btn-secondary">View</button></td>
+                  <td><button className="btn btn-warning">Edit</button></td>
+                  <td><DeleteModal /></td>
+                </tr>
+              )
+            })}
           </tbody>
         </table>
     </div>
