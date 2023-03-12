@@ -17,7 +17,7 @@ const DeleteModal = ({note, getNotes}) => {
         Delete
       </button>
 
-      <div className="modal fade" id={`delID${note.id}`} tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div className="modal fade" id={`delID${note.id}`} tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div className="modal-dialog">
           <div className="modal-content">
             <div className="modal-header">

@@ -1,6 +1,8 @@
-import Modal from './Modal'
-import DeleteModal from './DeleteModal';
 import { useState } from 'react'
+import Modal from './Modal'
+import ViewModal from './ViewModal';
+import EditModal from './EditModal';
+import DeleteModal from './DeleteModal';
 
 const NotesList = ({notes, getNotes}) => {
 
@@ -23,8 +25,8 @@ const NotesList = ({notes, getNotes}) => {
             return(
               <tr key={note.id}>
                 <td scope="row">{note.title}</td>
-                <td><button className="btn btn-secondary">View</button></td>
-                <td><button className="btn btn-warning">Edit</button></td>
+                <td><ViewModal note={note}/></td>
+                <td><EditModal note={note} getNotes={getNotes}/></td>
                 <td><DeleteModal note={note} getNotes={getNotes}/></td>
               </tr>
             )
