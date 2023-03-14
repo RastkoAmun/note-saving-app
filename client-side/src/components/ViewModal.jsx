@@ -17,6 +17,7 @@ const ViewModal = ({note}) => {
               <pre>{note.notebody}</pre>
             </div>
             <div className="modal-footer">
+              <p className="date">Last modified: {note.timelastmodified}</p>
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>

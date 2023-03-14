@@ -1,4 +1,37 @@
-const EditModal = ({note, getNotes}) => {
+import { useState } from 'react'
+
+const EditModal = ({note, getNotes, getDate}) => {
+  const [title, setTitle] = useState(note.title);
+  const [noteBody, setNoteBody] = useState(note.notebody);
+
+  const handleInput = (event) => {
+    if(event.target.classList.contains('note-title-input')){
+      setTitle(event.target.value);
+    }else{
+      setNoteBody(event.target.value);
+    }
+  }
+
+  const reset = () => {
+    setTitle(note.title);
+    setNoteBody(note.notebody)
+  }
+
+  const updateNote = async(id) => {
+    try {
+      const timeLastModified = getDate();
+      console.log(timeLastModified)
+      const body = {title, noteBody, timeLastModified}
+      await fetch(`http://localhost:8080/notes/${id}`, {
+        method: "PUT",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+      })
+      getNotes();
+    }catch(error) {
+      console.log(error.message);
+    } 
+  }
 
   return(
     <div>
@@ -11,18 +44,18 @@ const EditModal = ({note, getNotes}) => {
           <div className="modal-content">
             <div className="modal-header">
               <h5 className="modal-title" id="exampleModalLabel">Edit Note</h5>
-              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={reset}></button>
             </div>
             <div className="modal-body ">
               <label htmlFor="exampleFormControlInput1" className="form-label h4">Note Title</label>
-              <input type="text" className="form-control note-title-input" id="exampleFormControlInput1" placeholder=""/>
+              <input type="text" className="form-control note-title-input" id="exampleFormControlInput1" placeholder="" value={title} onChange={handleInput}/>
               <label htmlFor="exampleFormControlTextarea1" className="form-label h4 mt-3">Note Content</label>
-              <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"  
+              <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={noteBody} onChange={handleInput}
               ></textarea>
             </div>
             <div className="modal-footer">
-              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-              <button type="button" className="btn btn-warning" data-bs-dismiss="modal" >Edit</button>
+              <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={reset}>Cancel</button>
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={() => updateNote(note.id)}>Edit</button>
             </div>
           </div>
         </div>

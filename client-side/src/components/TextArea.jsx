@@ -1,21 +1,13 @@
 import { useState } from 'react'
 
-const TextArea = ({ getNotes }) => {
+const TextArea = ({ getNotes, getDate }) => {
   const [title, setTitle] = useState('');
   const [noteBody, setNoteBody] = useState('');
-  const [partsOfNoteBody, setPartsOfNoteBody] = useState([]);
 
   const handleInput = (event) => {
     if(event.target.classList.contains('note-title-input')){
       setTitle(event.target.value);
     }else{
-      
-      // console.log(event.target.value)
-      // // if(event.targe.value === "")
-      // if(/\r|\n$/.test(event.target.value)) {
-      //   setPartsOfNoteBody(partsOfNoteBody.concat(event.target.value))
-      //   console.log(partsOfNoteBody)
-      // } 
       setNoteBody(event.target.value);
     }
   }
@@ -23,19 +15,7 @@ const TextArea = ({ getNotes }) => {
   const addNote = async(event) => {
     event.preventDefault()
     try {
-      const timeLastModified = new Date().toString();
-
-      // let arr = [];
-      // arr.push(noteBody)
-      // console.log(arr);
-
-      // for(let i = 0; i < noteBody.length; i++){
-      //   if(noteBody[i] === "\n"){
-      //     console.log("HELLLLO");
-      //   }
-      // }
-
-
+      const timeLastModified = getDate();
       const body = {title, noteBody, timeLastModified}
       await fetch('http://localhost:8080/notes', {
         method: "POST",

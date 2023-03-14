@@ -55,10 +55,21 @@ pre{
   max-width: 700px;
 }
 
+.table td{
+  vertical-align: middle;
+}
+
+/* Modal Selector */
+.modal-footer{
+  justify-content: space-between;
+}
+
+.modal-footer p{
+  font-size: 13px;
+}
 
 
-
-/* #modal-dialog-edit{
+#modal-dialog-edit{
   position: absolute;
   top: 30%;
   right: 0;
@@ -67,7 +78,7 @@ pre{
   z-index: 10040;
   overflow: auto;
   overflow-y: auto;
-} */
+}
 
 
 
@@ -82,39 +93,6 @@ pre{
   font-size: 20px;
 }
 
-
-.saved-notes{
-  width: 500px;
-  margin: 0 auto;
-  margin-top: 30px;
-}
-
-.btn{
-  margin-top: 0px;
-}
-
-
-
-.save-button:hover{
-  background-color: rgb(8, 85, 167);
-}
-
-
-/* FOR MODAL */
-/* .modal, .overlay{
-  width: 100vw;
-    height: 100vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: fixed;
-} */
-
-/* .modal{
-  width: 100%;
-  height: 100%;
-} */
 
 
 
