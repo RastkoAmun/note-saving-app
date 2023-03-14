@@ -11,7 +11,7 @@ const NotesList = ({notes, getNotes, getDate}) => {
       <table className="table container">
         <thead >
           <tr>
-            <th className="col">A</th>
+            <th className="col"></th>
             <th className="col-9" scope="col">Note Title</th>
             <th className="col" scope="col">View</th>
             <th className="col" scope="col">Edit</th>
@@ -22,7 +22,7 @@ const NotesList = ({notes, getNotes, getDate}) => {
           {notes.map(note => {
             return(
               <tr key={note.id}>
-                <td><i className="bi bi-star"></i></td>
+                <td><i className="bi bi-star-fill" onClick={() => {console.log("AAAA")}}></i></td>
                 <td scope="row">{note.title}</td>
                 <td><ViewModal note={note}/></td>
                 <td><EditModal note={note} getNotes={getNotes} getDate={getDate}/></td>

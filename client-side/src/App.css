@@ -59,6 +59,19 @@ pre{
   vertical-align: middle;
 }
 
+.bi-star-fill{
+  color: rgb(2, 2, 0);
+  font-size: 20px; 
+}
+
+.bi-star-fill:hover{
+  color: rgb(186, 57, 57)
+}
+
+.bi-star:hover{
+  color: rgb(42, 154, 27)
+}
+
 /* Modal Selector */
 .modal-footer{
   justify-content: space-between;
