@@ -14,19 +14,26 @@ const TextArea = ({ getNotes, getDate }) => {
 
   const addNote = async(event) => {
     event.preventDefault()
-    try {
-      const timeLastModified = getDate();
-      const body = {title, noteBody, timeLastModified}
-      await fetch('http://localhost:8080/notes', {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(body)
-      })
-      setTitle('')
-      setNoteBody('')
-      getNotes()
-    }catch(err) {
-      console.log(err.message)
+    if(title === ''){
+      alert("Note must have a title, please provide a title for you note.");
+      return;
+    }else if(noteBody === ''){
+      alert("Note must have a content, please provide a content for you note.");
+    }else{
+      try {
+        const timeLastModified = getDate();
+        const body = {title, noteBody, timeLastModified}
+        await fetch('http://localhost:8080/notes', {
+          method: "POST",
+          headers: {"Content-Type": "application/json"},
+          body: JSON.stringify(body)
+        })
+        setTitle('')
+        setNoteBody('')
+        getNotes()
+      }catch(err) {
+        console.log(err.message)
+      }
     }
   }
 

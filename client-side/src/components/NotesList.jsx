@@ -1,9 +1,13 @@
-
+import { useState } from 'react';
 import ViewModal from './ViewModal';
 import EditModal from './EditModal';
 import DeleteModal from './DeleteModal';
 
 const NotesList = ({notes, getNotes, getDate}) => {
+  // const [notesToShow, setNotesToShow] = useState([]);
+  const [showImportant, setShowImportant] = useState(false);
+
+  const filteredNotes = showImportant ? notes.filter((note) => note.important) : notes;
 
   const patchNote = async(note) => {
     try {
@@ -26,11 +30,12 @@ const NotesList = ({notes, getNotes, getDate}) => {
   return(
     <div>
       <h2 className='header mt-5'>SAVED NOTES:</h2>
-      {/* <button type="button" className="btn btn-warning">Yes</button> */}
+      <div className='text-center'>
+        <button type="button" className="btn btn-light mb-3" onClick={() => setShowImportant(!showImportant)}>{showImportant ? "Show All" : "Show important"}</button></div>
       <table className="table container">
         <thead >
           <tr>
-            <th className="col"></th>
+            <th className="col">IMP</th>
             <th className="col-9" scope="col">Note Title</th>
             <th className="col" scope="col">View</th>
             <th className="col" scope="col">Edit</th>
@@ -38,7 +43,7 @@ const NotesList = ({notes, getNotes, getDate}) => {
           </tr>
         </thead>
         <tbody>
-          {notes.map(note => {
+          {filteredNotes.map(note => {
             return(
               <tr key={note.id}>
                 <td>{note.important ?
