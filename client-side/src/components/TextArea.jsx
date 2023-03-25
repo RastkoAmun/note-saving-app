@@ -42,7 +42,7 @@ const TextArea = ({ getNotes, getDate }) => {
           <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" value={noteBody} 
             onChange={handleInput}></textarea>
         </div>
-        <button className="btn btn-primary form-control" onClick={addNote}>SAVE NOTE</button>
+        <button className="btn btn-success form-control" onClick={addNote}>SAVE NOTE</button>
     </div>
     
   )

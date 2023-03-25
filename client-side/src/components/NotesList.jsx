@@ -5,9 +5,28 @@ import DeleteModal from './DeleteModal';
 
 const NotesList = ({notes, getNotes, getDate}) => {
 
+  const patchNote = async(note) => {
+    try {
+      const title = note.title;
+      const noteBody = note.notebody;
+      const timeLastModified = note.timelastmodified;
+      const important = !note.important;
+      const body = {title, noteBody, timeLastModified, important}
+      await fetch(`http://localhost:8080/notes/${note.id}`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(body)
+      })
+      getNotes();
+    }catch(error) {
+      console.log(error.message);
+    } 
+  }
+
   return(
     <div>
       <h2 className='header mt-5'>SAVED NOTES:</h2>
+      {/* <button type="button" className="btn btn-warning">Yes</button> */}
       <table className="table container">
         <thead >
           <tr>
@@ -22,7 +41,10 @@ const NotesList = ({notes, getNotes, getDate}) => {
           {notes.map(note => {
             return(
               <tr key={note.id}>
-                <td><i className="bi bi-star-fill" onClick={() => {console.log("AAAA")}}></i></td>
+                <td>{note.important ?
+                  <i className="bi bi-star-fill" onClick={() => patchNote(note)}></i> :
+                  <i className="bi bi-star" onClick={() => patchNote(note)}></i>}
+                </td>
                 <td scope="row">{note.title}</td>
                 <td><ViewModal note={note}/></td>
                 <td><EditModal note={note} getNotes={getNotes} getDate={getDate}/></td>

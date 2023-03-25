@@ -38,10 +38,10 @@ app.get('/notes/:id', async(req, res) => {
 //Posting a new note
 app.post('/notes', async(req, res) => {
   try {
-    const {title, noteBody, timeLastModified} = req.body;
+    const {title, noteBody, timeLastModified, important} = req.body;
     console.log(title)
-    const query = 'INSERT INTO notes(title, noteBody, timeLastModified) VALUES ($1, $2, $3) RETURNING *';
-    const addedNote = await pool.query(query, [title, noteBody, timeLastModified]);
+    const query = 'INSERT INTO notes(title, noteBody, timeLastModified, important) VALUES ($1, $2, $3, $4) RETURNING *';
+    const addedNote = await pool.query(query, [title, noteBody, timeLastModified, important]);
     res.json(addedNote.rows);
   }catch(err) {
     console.log(err.message)
@@ -51,11 +51,23 @@ app.post('/notes', async(req, res) => {
 app.put('/notes/:id', async(req, res) => {
   try {
     const id = req.params.id;
-    const {title, noteBody, timeLastModified} = req.body;
-    const query = 'UPDATE notes SET title=$1, noteBody=$2, timeLastModified=$3 WHERE id=$4 RETURNING *';
-    const updatedNote = await pool.query(query, [title, noteBody, timeLastModified, id]);
+    const {title, noteBody, timeLastModified, important} = req.body;
+    const query = 'UPDATE notes SET title=$1, noteBody=$2, timeLastModified=$3, important=$4 WHERE id=$5 RETURNING *';
+    const updatedNote = await pool.query(query, [title, noteBody, timeLastModified, important, id]);
     res.json(updatedNote.rows);
   }catch(err) {
+    console.log(err.message)
+  }
+})
+
+app.patch('/notes/:id', async(req, res) => {
+  try{
+    const id = req.params.id;
+    const important = req.body.important;
+    const query = 'UPDATE notes SET important=$1 WHERE id=$2 RETURNING *';
+    const updatedNote = await pool.query(query, [important, id]);
+    res.json(updatedNote.rows);
+  }catch(err){
     console.log(err.message)
   }
 })

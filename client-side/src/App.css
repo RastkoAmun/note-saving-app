@@ -68,8 +68,11 @@ pre{
   color: rgb(186, 57, 57)
 }
 
+.bi-star{
+  font-size: 20px; 
+}
 .bi-star:hover{
-  color: rgb(42, 154, 27)
+  color: rgb(192, 21, 21)
 }
 
 /* Modal Selector */

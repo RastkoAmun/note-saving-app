@@ -17,12 +17,12 @@ const EditModal = ({note, getNotes, getDate}) => {
     setNoteBody(note.notebody)
   }
 
-  const updateNote = async(id) => {
+  const updateNote = async(note) => {
     try {
       const timeLastModified = getDate();
-      console.log(timeLastModified)
-      const body = {title, noteBody, timeLastModified}
-      await fetch(`http://localhost:8080/notes/${id}`, {
+      const important = note.important;
+      const body = {title, noteBody, timeLastModified, important}
+      await fetch(`http://localhost:8080/notes/${note.id}`, {
         method: "PUT",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify(body)
@@ -55,7 +55,7 @@ const EditModal = ({note, getNotes, getDate}) => {
             </div>
             <div className="modal-footer">
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal" onClick={reset}>Cancel</button>
-              <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={() => updateNote(note.id)}>Edit</button>
+              <button type="button" className="btn btn-warning" data-bs-dismiss="modal" onClick={() => updateNote(note)}>Edit</button>
             </div>
           </div>
         </div>
